@@ -26,6 +26,7 @@ export class BeneficiarioComponent implements OnInit {
   }
 
   consulta() {
+    this.mensagens=[];
     console.log("Busca " + JSON.stringify (this.beneficiario));
      if(this.beneficiario.matricula==undefined || this.beneficiario.matricula=='') {
       this.mensagens.push({severity: 'error', summary: '', detail: 'Preencha a matricula'});
@@ -43,12 +44,20 @@ export class BeneficiarioComponent implements OnInit {
       .subscribe( result => {
         resultado = result;
         console.log("Resultado: " + JSON.stringify(resultado));
-        this.mensagens.push({severity: 'info', summary: 'Consulta realizada com sucesso!', detail:''});
+        this.mensagens.push(
+          {severity: 'info', 
+          summary: 'Consulta realizada com sucesso!', 
+          detail:' '});
         this.exibeComprovante=true;
         },
         (error) => {
           console.log('Erro ao pesquisar: ' + error);
-          this.mensagens.push({severity: 'error', summary: 'Pesquisa', detail:'Erro ao pesquisar!'});
+          let descricao = error.status==404 ? "Nao encontrado beneficiario!" : "Erro ao pesquisar!";
+          this.mensagens.push(
+            {severity: 'error', 
+            summary: descricao, 
+            detail: ""}
+            );
         },
         () => {
           console.log('Finalizada pesquisa');
@@ -66,12 +75,5 @@ export class BeneficiarioComponent implements OnInit {
     console.log('Baixando comprpvante');
   }
 
-  //exibeComprovante() {
-  //  let exibe : Boolean;
-  //  exibe = this.beneficiario.comprovante!= undefined && 
-  //  this.beneficiario.comprovante!=null;
-  ///  console.log('Exibe ' + exibe);
-  //  return exibe;
- // }
 
 }
