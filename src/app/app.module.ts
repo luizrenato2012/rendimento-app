@@ -6,9 +6,10 @@ import { BeneficiarioComponent } from './beneficiario/beneficiario.component';
 import { InputMaskModule } from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
-import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,10 @@ import { ButtonModule } from 'primeng/button';
     FormsModule,
     InputMaskModule,
     InputTextModule,
-    MessageModule,
+    MessagesModule,
     HttpClientModule,
-    ButtonModule 
+    ButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

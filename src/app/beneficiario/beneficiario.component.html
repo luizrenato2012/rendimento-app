@@ -1,40 +1,55 @@
-<div  style="width: 60%; padding: 10px; ">
+<div style="width: 60%; padding: 10px; ">
   <h1>Consulta de Rendimentos por CPF </h1>
   <form #pesquisa="ngForm" novalidate>
     <div class="ui-g">
+
+      <div class="ui-g-2">
+        <label for="anoExercicio">Ano Exercício</label>
+      </div>
+      <div class="ui-g-10">
+        <input pInputText type="text" name="anoExercicio" id="anoExercico" value="2018" readonly />
+      </div>
+
       <div class="ui-g-2">
         <label for="matricula">Matricula</label>
       </div>
-      <div class="ui-g-10">  
-        <p-inputMask  [(ngModel)]="beneficiario.matricula" name="matricula" 
-              #matricula="ngModel" id="matricula" 
-              mask="**-****" required unmask="true"></p-inputMask>
+      <div class="ui-g-10">
+        <input pInputText type="text" [(ngModel)]="beneficiario.matricula" name="matricula" #matricula="ngModel"
+          id="matricula" required />
       </div>
 
-      <div class="ui-g-2" >
+      <div class="ui-g-2">
         <label for="cpf" class="col-sm-2 col-form-label">CPF</label>
       </div>
       <div class="ui-g-10">
-        <p-inputMask [(ngModel)]="beneficiario.cpf" mask="999.999.999-99" #cpf="ngModel" 
-            id="cpf" name="cpf" required></p-inputMask>
-      </div>  
+        <p-inputMask [(ngModel)]="beneficiario.cpf" mask="999.999.999-99" #cpf="ngModel" id="cpf" name="cpf" required>
+        </p-inputMask>
+      </div>
     </div>
     <br />
 
-    <p-button style="margin: 10px" (click)="consulta()" label="Consulta Rendimentos " 
-      style="font-size: 105%"></p-button>
-    <button pButton  type="button" (click)="limpa()" label="Limpar Formulario" 
-        style="font-size: 105%; margin-left: 10px; background-color: #e6e9ef; color: black"></button>
-    <div [hidden]="cpf.valid || cpf.pristine">
-        <p-message severity="error" text="CPF invalido!" ></p-message>
+    <div class="ui-g">
+      <div class="ui-g-4" >
+        <p-button style="margin: 10px" (click)="consulta()" label="Consulta Rendimentos " style="font-size: 105%">
+        </p-button>
+      </div>
+
+      <div class="ui-g-4">
+        <button pButton type="button" (click)="limpa()" label="Limpar Formulario"
+          style="font-size: 105%; margin-left: 10px; background-color: #e6e9ef; color: black"></button>
+      </div>
+
+      <div [hidden]="!exibeComprovante" class="ui-g-3">
+        <button pButton style="margin: 10px" (click)="baixaComprovante()" label="Baixa Comprovante " 
+            style="font-size: 105%" >  </button>
+      </div> 
+      <div class="ui-g-1">
+        </div>  
     </div>
-    <div [hidden]="cpf.valid || cpf.pristine">
-        <p-message severity="error" text="CPF invalido!" ></p-message>
-    </div>
-   <!-- <button pButton type="button" label="Secondary" style="background-color: #e6e9ef; color: black" icon=" fa fa-check"></button>  -->
-    <br/>
-    <br/>
-    
-   
-  </form>
+    <p-messages [(value)]="mensagens"></p-messages>
+<br />
+<br />
+
+
+</form>
 </div>
